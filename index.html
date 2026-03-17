@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartLife Calculator</title>
+    <link rel="stylesheet" href="style.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>SmartLife Calculator</h1>
+            <p>AI - Powered Utility System</p>
+        </header>
+
+        <nav>
+            <button class="tab-btn active" onclick="openTab('emi')">EMI- Calculator</button>
+            <button class="tab-btn " onclick="openTab('grocery')">Grocery Budget</button>
+            <button class="tab-btn" onclick="openTab('electricity')">Electricity Bill</button>
+            <button class="tab-btn" onclick="openTab('data')">Data Usage</button>
+            <button class="tab-btn" onclick="openTab('tax')">Tax Calculator</button>
+            <button class="tab-btn ai-btn" onclick="openTab('ai')">
+                <i class="fa-solid fa-robot"></i><br>
+                <b>AI Chat-Bot</b>
+            </button>
+        </nav>
+
+        <main>
+            <!-- Emi  -->
+            <div id="emi" class="tab-content active">
+                <h2>EMI Calculator</h2>
+
+                <form onsubmit="event.preventDefault(); calculateEMI();">
+
+                    <div class="form-group">
+                        <label for="">Loan Amount(₹)</label>
+                        <input type="number" id="emi-principal" placeholder="eg.50000" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Interest Rate (%)</label>
+                        <input type="number" id="emi-rate" step="0.01" placeholder="9.5" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Tenure (Years)</label>
+                        <input type="number" id="emi-time" placeholder="5" required>
+                    </div>
+
+                    <button class="action-btn">calculate EMI</button>
+                </form>
+
+                <div class="result" id="emi-result"></div>
+            </div>
+
+            <!-- grocery -->
+            <div id="grocery" class="tab-content">
+                <h2>Grocery Budget</h2>
+
+                <form onsubmit="event.preventDefault();calculateGrocery();">
+
+                    <div class="form-group">
+                        <label>Monthly Budget (₹)</label>
+
+                        <input type="number" id="grocery-budget" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Item Price (comma separated)</label>
+                        <input type="text" id="grocery-items" placeholder="eg.50, 100, 120,200" required>
+                    </div>
+                    <button class="action-btn">Calculate Expense</button>
+
+                </form>
+                <div class="result" id="grocery-result"></div>
+            </div>
+
+            <!-- Electricity  -->
+            <div id="electricity" class="tab-content">
+                <h2>Electricity Bill</h2>
+                <form onsubmit="event.preventDefault();calculateElectricity();">
+
+                    <div class="form-group">
+                        <label>Unit consumed(₹)</label>
+                        <input type="number" id="elec-units" placeholder="eg.100" required>
+                    </div>
+
+                    <button type="submit" class="action-btn">Claculate Bill</button>
+                </form>
+                <div class="result" id="elec-result"></div>
+            </div>
+
+            <!-- Data usage -->
+            <div id="data" class="tab-content">
+
+                <h2>Mobile Data Usage</h2>
+
+                <form onsubmit="event.preventDefault();calculateData();">
+
+                    <div class="form-group">
+                        <label>Total Plan Data (GB)</label>
+                        <input type="number" id="data-total" placeholder="eg.45.5" step="0.1" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Used Data(GB)</label>
+                        <input type="text" id="data-used" placeholder="eg.55.5 GB" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Days Left</label>
+                        <input type="text" id="data-days" placeholder="eg.15 days" required>
+                    </div>
+                    <button class="action-btn">Check Usage</button>
+                </form>
+                <div class="result" id="data-result"></div>
+            </div>
+
+            <!-- Tax -->
+            <div id="tax" class="tab-content">
+
+                <h2>Tax Calculator</h2>
+
+                <form onsubmit="event.preventDefault();calculateTax();">
+
+                    <div class="form-group">
+                        <label>Amount (₹)</label>
+                        <input type="number" id="tax-amount" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Tax Rate (%)</label>
+                        <input type="number" id="tax-rate" required>
+                    </div>
+                    <button class="action-btn">Calculate Tax</button>
+                </form>
+                <div class="result" id="tax-result"></div>
+            </div>
+
+            <!-- AI chatbot -->
+            <div id="ai" class="tab-content">
+                <h2>AI- ChatBot</h2>
+
+                <ul>
+                    <li>Calculate EMI for 50000 at 9% for 5 years</li>
+                    <li>Electricity bill for 200 units</li>
+                </ul>
+
+                <!-- Chat input area -->
+                <div class="chat-input">
+                    <input type="text" id="ai-input" placeholder="Ask something like: EMI for 50000 at 9% for 5 years"
+                        required>
+                    <button onclick="sendAIQuery()" required>Send</button>
+                </div>
+                <div class="chat-box" id="chat-box">
+                    <!-- chat message will appear here  -->
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
